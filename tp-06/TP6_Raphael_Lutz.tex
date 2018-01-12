@@ -98,7 +98,7 @@
 
 \subsection*{Formules logiques (saison 1)}
 
-Par les points 2 et 3 de l'énoncé, nous savons que les personnes en couple s'aiment mutuellement. Ainsi, nous nous limiterons à un seul type de relation : le fait d'aimer quelqu'un ($A(x,y)$). Lors d'une relation de couple, nous écrirons $A(x,y) \land A(y,x)$.
+Par les points 2 et 3 de l'énoncé, nous savons que les personnes en couple s'aiment mutuellement. Ainsi, nous nous limiterons à un seul type de relation : le fait d'aimer quelqu'un ($A(x,y)$). Lors d'une relation de couple, nous écrirons $A(x,y) \land A(y,x)$. Nous allons aussi numéroter les variables le plus rigoureusement possible, afin d'éviter de futurs conflits.
 
 \begin{flalign}
 & A(A1,A2) \land A(A2,A1) \land A(R,F) \land A(F,R) & \\
@@ -146,7 +146,7 @@ La conclusion du jugement seront les formules (11) et (12), où nous souhaitons 
 {\prftree[r]{($\neg$r)}
 {\prftree[r]{($\land$r)}
 {\prftree[r]{(CG10)}
-{\prftree[r]{($\exists$I)}
+{\prftree[r]{($\exists$l)}
 {\prftree[r]{basic}
 {\text{\textcircled{1}}}
 {\prftree[r]{(déduction)}
@@ -166,17 +166,22 @@ On observe que $t_{10'} = A1$, et ainsi la branche \textcircled{1} devient un ba
 
 \begin{displaymath}
 \prftree[r]{(rappel)}
-{\prftree[r]{($t_{10'}=A1$)}
+{\prftree[r]{($\scriptstyle t_{10'}=A1$)}
 {\prftree[r]{(CG2)}
-{\prftree[r]{($\exists$I,$\exists$I,$\exists$I)}
-{\prftree[r]{($\land$I,$\land$I,$\land$I,$\land$I)}
-{\prftree[r]{($\lor$r)}
-{\prftree[r]{(déduction,weaken I)}
+{\prftree[r]{($\exists$l,$\exists$l,$\exists$l)}
+{\prftree[r]{($\land$l,$\land$l,$\land$l,$\land$l,$\lor$r)}
+{\prftree[r]{($\lor l$)}
+{\prftree[r]{}
 {\prftree[r]{}
 {\text{\textcircled{3}}}
-{\Gamma , A(M,F) , A(A1,p_1) , A(p_1,A1) , D(p_1,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(M,F) , D(A2,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(M,F) , A(A1,A2) , A(A2,A1) , D(A2,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\prftree[r]{}
+{\prftree[r]{}
+{\text{\textcircled{4}}}
+{\Gamma , A(M,F) , D(F,x_1) , A(R,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(M,F) , A(R,F) , A(F,R) , D(F,x_1) , A(R,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
 {\Gamma , A(M,F) , H(h_1) , A(h_1,p_1) , A(p_1,h_1) , D(p_1,x_1) , A(h_1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
-{\Gamma , A(M,F) , H(h_1) , A(h_1,p_1) , A(p_1,h_1) , D(p_1,x_1) , A(h_1,x_1) \vdash A(t_{10},A1) \lor A(A1,t_{10})}}
 {\Gamma , A(M,F) , H(h_1) \land A(h_1,p_1) \land A(p_1,h_1) \land D(p_1,x_1) \land A(h_1,x_1) \vdash A(t_{10},A1) \lor A(A1,t_{10})}}
 {\Gamma , A(M,F) , \exists h_1 \exists p_1 \exists x_1 \; H(h_1) \land A(h_1,p_1) \land A(p_1,h_1) \land D(p_1,x_1) \land A(h_1,x_1) \vdash A(t_{10},A1) \lor A(A1,t_{10})}}
 {\Gamma , A(M,F) \vdash A(t_{10},A1) \lor A(A1,t_{10})}}
@@ -184,24 +189,106 @@ On observe que $t_{10'} = A1$, et ainsi la branche \textcircled{1} devient un ba
 {\text{\textcircled{2}}}
 \end{displaymath}
 
-Je ne suis malheureusement pas très sûr de moi (je préfère le préciser, par soucis d’honnêteté). Mais en voyant la partie droite, il y a de bonnes chances que l'homme infidèle (formule 2) soit Alexandre. De plus, suivant mon graphe (qui montre la relation incestueuse et montre que Miguel est bien amoureux de Floriane), Miguel serait donc le frère caché d'Alexandre. Ainsi, nous pouvons continuer nos déductions. $p1$ est donc Alexandrine, et $x_1$ est $t_{10}$ qui est aussi Miguel :
+Au dernier étage du calcul de séquent, nous remarquons que l'homme infidèle (formule (2)) ne peut qu'être Alexandre ou Robin. Nous pouvons donc diviser l'arbre en 2 suivant ces deux personnes, et cela nous donne directement une indication de la partenaire (respectivement Alexandrine et Floriane). De plus, comme nous retrouvons les éléments de la formule (1) i.e. $A(A1,A2) \land A(A2,A1)$ et $A(R,F) \land A(F,R)$, nous pouvons également les enlever (puisqu'elles sont toujours contenues dans le $\Gamma$ !). Introduisons une nouvelle règle, nommée doublon (triviale mais utile pour la lisibilité) :
+
+\begin{displaymath}
+\prftree[r]{(doublon)}
+{A \vdash \Delta}
+{A,A \vdash \Delta}
+\end{displaymath}
+
+Ceci nous a donc amené à ces deux nouvelles branches \textcircled{3} et \textcircled{4}. Commençons par la branche \textcircled{3} en utilisant la formule (4) qui est complémentaire à la formule (2), puisque dans ce cas, l'homme fidèle est donc Robin, tandis que dans la branche \textcircled{4} l'homme fidèle est Alexandre. Nous nous permettons maintenant d'enlever directement les $\exists$ gauches (puisque les noms de variables ont été choisis avec soin), ainsi que de remplacer les $\land$ gauches par des virgules (règle $\land$r) si besoin. Il est également important de se souvenir qu'à chaque supposition, nous créons plusieurs branches dans le calcul des séquents. Ainsi, à chaque règle de la forme ($x_i=$personne), il faut se souvenir que \textbf{nous n'explorons qu'une de toutes les branches possibles}. Par soucis de clarté, je me permettrai donc de ne pas exprimer les autres branches explicitement.
+
+\subsubsection*{Branche \textcircled{3}}
 
 \begin{displaymath}
 \prftree[r]{(rappel)}
-{\prftree[r]{(déduction)}
-{\prftree[r]{basic}
-{}
-{\Gamma , A(M,F) , A(A1,A2) , A(A2,A1) , D(A2,M) , A(A1,M) \vdash A(M,A1) , A(A1,M)}}
-{\Gamma , A(M,F) , A(A1,p_1) , A(p_1,A1) , D(p_1,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\prftree[r]{(CG4)}
+{\prftree[r]{($\forall$l)}
+{\prftree[r]{($\land$l,doublon)}
+{\prftree[r]{}
+{\text{abandon (et erreur fort probable ...)}}
+{\Gamma , D(F,t_3) , \neg A(R,t_3) , A(M,F) , D(A2,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(R,F) \land A(F,R) \land D(F,t_3) \land \neg A(R,t_3) , A(M,F) , D(A2,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , \forall x_3 A(R,F) \land A(F,R) \land D(F,x_3) \land \neg A(R,x_3) , A(M,F) , D(A2,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(M,F) , D(A2,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
 {\text{\textcircled{3}}}
 \end{displaymath}
+
+\subsubsection*{Branche \textcircled{4}}
+
+\begin{displaymath}
+\prftree[r]{(rappel)}
+{\prftree[r]{(CG4,$\exists$l,$\exists$l)}
+{\prftree[r]{($\forall$l,$\land$l,$\land$l,$\land$l,doublon)}
+{\prftree[r]{(CG3,$\exists$l,$\exists$l)}
+{\prftree[r]{($\land$l,$\land$l,$\land$l)}
+{\prftree[r]{($\scriptstyle f_2=F,p_2=R$,doublon)}
+{\prftree[r]{($\scriptstyle x_1=M,x_2=A1$)}
+{\prftree[r]{(CG5,$\exists$l,$\land$l)}
+{\prftree[r]{(CG6,$\exists$l,$\land$l)}
+{\prftree[r]{($\scriptstyle x_5=F,x_{5'}=A1$,doublon)}
+{\prftree[r]{(CG8,$\exists$l,$\land$l)}
+{\prftree[r]{($\scriptstyle x_7=M$,doublon)}
+{\prftree[r]{($\scriptstyle x_{7'}=F$,doublon)}
+{\prftree[r]{($\scriptstyle x_{7''}=R$,doublon)}
+{\prftree[r]{$\neg$basic}
+{}
+{\Gamma , D(A_1,t_4) , \neg A(A2,t_4) , A(F,A1) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , A(R,M) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(F,x_{7''}) , A(x_{7''},M) , D(A_1,t_4) , \neg A(A2,t_4) , A(F,A1) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , A(R,M) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(M,x_{7'}) , A(x_{7'},x_{7''}) , A(x_{7''},M) , D(A_1,t_4) , \neg A(A2,t_4) , A(F,A1) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , A(R,M) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(R,x_7) , A(x_7,x_{7'}) , A(x_{7'},x_{7''}) , A(x_{7''},x_7) , D(A_1,t_4) , \neg A(A2,t_4) , A(F,A1) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , A(R,M) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , D(A_1,t_4) , \neg A(A2,t_4) , A(F,A1) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , A(R,M) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(M,x_5) , A(x_5,x_{5'}) , A(x_{5'}, A2) , D(A_1,t_4) , \neg A(A2,t_4) , A(F,A1) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , A(R,M) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , D(A_1,t_4) , \neg A(A2,t_4) , A(F,A1) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , A(R,M) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(F,A1) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , A(R,M) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , D(R,x_2) , A(F,x_2) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , D(F,x_1) , A(R,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , F(f_2) , A(f_2,p_2) , A(p_2,f_2) , D(p_2,x_2) , A(f_2,x_2) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , D(F,x_1) , A(R,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , F(f_2) \land A(f_2,p_2) \land A(p_2,f_2) \land D(p_2,x_2) \land A(f_2,x_2) , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , D(F,x_1) , A(R,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , D(A2,t_3) , \neg A(A1,t_3) , A(M,F) , D(F,x_1) , A(R,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , \forall x_3 A(A1,A2) \land A(A2,A1) \land D(A2,x_3) \land \neg A(A1,x_3) , A(M,F) , D(F,x_1) , A(R,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(M,F) , D(F,x_1) , A(R,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\text{\textcircled{4}}}
+\end{displaymath}
+
 \end{landscape}
 \newpage
 
-Ainsi, les deux branches \textcircled{1},\textcircled{2} nous donnent un basic, \emph{même si je suis bien moins sûr de ma démarche dans cette seconde branche}. Nous avons donc prouvé que soit il y a une relation incestueuse, soit Miguel n'aime pas Floriane. En l'occurrence, dans mon cas, j'ai même démontré que Miguel est le frère caché d'Alexandre, et qu'une des deux possibilités suivantes est forcément vraie : soit Alexandre est amoureux de Miguel, soit Miguel est amoureux d'Alexandre. Cela appuie mon graphe. Il correspond en effet non seulement aux différents énoncés de la saison 1, mais il répond également au questionnement de la saison 2.
+Nous arrivons enfin à la partie intéressante. Nous voyons que nous avons développé toutes les formules dignes d'intérêt : (2),(3),(4),(5),(6),(8),(10),(11),(12). La formule (1) n'a pas d'utilité propre hormis pour faire des suppositions qui ont un intérêt, tout comme les formules (7) et (9). Or, la partie droite nous dit qu'une des deux possibilités suivantes doit être remplie :
+
+\begin{itemize}
+\item ``Un homme (frère caché d'Alexandre) aime Alexandre'' $A(t_{10},A1)$
+\item ``Alexandre aime un homme (qui est son frère caché'' $A(A1,t_{10})$
+\end{itemize}
+
+Il est impossible qu'Alexandre aime une autre personne, d'après $D(A2,t_3) \land \neg A(A1,t_3)$. Et aucun homme n'aime Alexandre, puisque $A(M,F)$ et $A(R,M)$ sont les deux seules relations qu'on des hommes envers d'autres hommes. Cela nous mène donc à un non-basic, et donc nous ne pouvons pas prouver à notre ``ami'' (de l'énoncé), que soit il existe une relation incestueuse soit que Miguel n'aime pas Floriane.
+
 \vspace{0.6cm}
 
-En espérant que la mise en page soit suffisamment claire agréable à lire !
+J'aurais également aimé trouver un moyen plus léger de faire cette preuve, et je m'excuse d'avance pour la lourdeur de ces lignes de calculs ... Voici finalement un résumé de la structure totale du calcul de séquent, pour aider à la compréhension générale de la structure que j'ai utilisé
+
+\begin{displaymath}
+\prftree[r]{}
+{\prftree[r]{}
+{\prftree[r]{}
+{\;\;\;\;\;\text{\textcircled{1}}\;\;\;\;\;}
+{...}}
+{\prftree[r]{}
+{\prftree[r]{}
+{\prftree[r]{}
+{\prftree[r]{}
+{\;\;\;\;\;\text{\textcircled{3}}\;\;\;\;\;}
+{...}}
+{\prftree[r]{}
+{\;\;\;\;\;\text{\textcircled{4}}\;\;\;\;\;}
+{...}}
+{...}}
+{\;\;\;\;\;\text{\textcircled{2}}\;\;\;\;\;}}
+{...}}
+{...}}
+{\;\;\;\;\;\Gamma \vdash \Delta\;\;\;\;\;}
+\end{displaymath}
+
 
 \includepdf[pages={1}]{TP6_graphe.pdf}
 
