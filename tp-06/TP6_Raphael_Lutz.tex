@@ -1,0 +1,208 @@
+\documentclass[10pt]{extarticle}
+
+%\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage[francais]{babel}
+\usepackage{charter}
+\usepackage{color}
+\usepackage{comment}
+\usepackage{empheq}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+%\usepackage{lipsum,booktabs}
+%\usepackage{sectsty}
+\usepackage{setspace}
+\usepackage{titlesec}
+%\usepackage{wrapfig}
+%\usepackage{xcolor}
+%\usepackage{listliketab}
+%\usepackage{tabto}
+\usepackage{amsmath}
+\usepackage{pdflscape}
+\usepackage{prftree}
+\usepackage{pdfpages}
+
+\definecolor{vertSec}{rgb}{0,0.3,0}
+\definecolor{vertSSec}{rgb}{0,0.2,0}
+\definecolor{vertSSSec}{rgb}{0,0,0}
+
+\titleformat{\section}
+{\color{vertSec}\normalfont\Large\bfseries}
+{\color{vertSec}\thesection}{1em}{}
+
+%\titleformat{name=\subsection}[block]
+%{\color{vertSSec}\normalfont\Large\bfseries}
+%{\hspace*{0.3cm}\thesubsection}
+%{1em}
+%{}
+
+%\titleformat{name=\subsection,numberless}[block]
+%{\color{vertSSec}\normalfont\normalsize\bfseries}
+%{}
+%{1pt}
+%{\hspace*{0.3cm}}
+
+\titleformat{\subsection}
+{\color{vertSSec}\normalfont\large\bfseries}
+{\color{vertSSec}\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+{\color{vertSSSec}\normalfont\large\bfseries}
+{\color{vertSSSec}\thesubsubsection}{1em}{}
+
+%\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+%\newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
+
+\begin{document}
+
+%\pagestyle{fancy}
+%\renewcommand{\headheight}{16pt}
+%\lhead{Lutz Raphaël}
+%\rhead{\today}
+%\onehalfspacing
+
+\section*{TP6 - Raphaël Lutz}
+
+\subsection*{Constantes}
+\begin{itemize}
+\setlength\itemsep{0cm}
+\item A1 (Alexandre)
+\item A2 (Alexandrine)
+\item R (Robin)
+\item F (Floriane)
+\item M (Miguel)
+\end{itemize}
+
+\subsection*{Variables}
+\begin{itemize}
+\setlength\itemsep{0cm}
+\item $x$ ou $x_i$ une personne (implicitement inconnue)
+\item $h$ ou $h_i$ une personne (implicitement un homme)
+\item $f$ ou $f_i$ une personne (implicitement une femme)
+\item $p$ ou $p_i$ une personne (implicitement un partenaire)
+\end{itemize}
+
+\subsection*{Prédicats}
+\begin{itemize}
+\setlength\itemsep{0cm}
+\item $A(x,y)$ - ``x aime y'' (amour unilatéral)
+\item $D(x,y)$ - ``x et y sont deux personnes distinctes''
+\item $H(x,y)$ - ``x est un homme''
+\item $F(x,y)$ - ``x est une femme''
+\item $B(x,y)$ - ``x et y sont frères''
+\end{itemize}
+
+\subsection*{Formules logiques (saison 1)}
+
+Par les points 2 et 3 de l'énoncé, nous savons que les personnes en couple s'aiment mutuellement. Ainsi, nous nous limiterons à un seul type de relation : le fait d'aimer quelqu'un ($A(x,y)$). Lors d'une relation de couple, nous écrirons $A(x,y) \land A(y,x)$.
+
+\begin{flalign}
+& A(A1,A2) \land A(A2,A1) \land A(R,F) \land A(F,R) & \\
+& \exists h_1 \exists p_1 \exists x_1 \;\; H(h_1) \land A(h_1,p_1) \land A(p_1,h_1) \land D(p_1,x_1) \land A(h_1,x_1) & \\
+& \exists f_2 \exists p_2 \exists x_2 \;\; F(f_2) \land A(f_2,p_2) \land A(p_2,f_2) \land D(p_2,x_2) \land A(f_2,x_2) & \\
+& \exists h_3 \exists p_3 \forall x_3 \;\; H(h_3) \land A(h_3,p_3) \land A(p_3,h_3) \land D(p_3,x_3) \land \neg A(h_3,x_3) & \\
+& \exists f_4 \exists p_4 \forall x_4 \;\; F(f_4) \land A(f_4,p_4) \land A(p_4,f_4) \land D(p_4,x_4) \land \neg A(f_4,x_4) & \\
+& \exists x_{5} \exists x_{5'} \;\; A(M,x_5) \land A(x_5,x_{5'}) \land A(x_{5'},A2) & \\
+& \forall f_6 \forall f_{6'} \;\; F(f_6) \land F(f_{6'}) \land \neg A(f_6,f_{6'}) & \\
+& \exists x_7 \exists x_{7'} \exists x_{7''} \;\; A(R,x_7) \land A(x_7,x_{7'}) \land A(x_{7'},x_{7''}) \land A(x_{7''},x_7) & \\
+& \forall x_8 \;\; \neg A(x_8,x_8) &
+\end{flalign}
+
+\emph{Le graphe sera joint au pdf en dernière page. J'ai précisé les relations connues des relations supposées.}
+
+\subsection*{Formules logiques (saison 2)}
+
+\begin{flalign}
+& \exists b_9 \;\; B(b_9,A1) & \\
+& \exists i_{10} \exists i_{10'} \;\; B(i_{10},i_{10'}) \land (A(i_{10},i_{10'}) \lor A(i_{10'},i_{10})) & \\
+& \neg A(M,F) &
+\end{flalign}
+
+
+\newpage
+\begin{landscape}
+\subsection*{Calcul des séquents}
+On utilise la convention suivante : on regroupe les 10 premières formules sous la dénomination $\Gamma$. Lorsque nous avons besoin d'extraire l'une des formules (1 à 10) de $\Gamma$, on utilise la règle de contraction gauche (noté CG, suivi du numéro de la formule extraite, e.g. CG2) :
+
+\begin{displaymath}
+\prftree[r]{(CG)}{\Gamma , A , A \vdash \Delta}{\Gamma, A \vdash \Delta}
+\end{displaymath}
+
+\begin{center}
+\emph{[source : Wikipédia, Calcul des séquents]}
+\end{center}
+
+Cette règle (triviale mais très utile dans notre cas), nous garantis que $\Gamma$ reste identique, et nous permet d'extraire les formules souhaitées sans devoir ré-exprimer $\Gamma$ ou le modifier.
+
+La conclusion du jugement seront les formules (11) et (12), où nous souhaitons démontrer que l'une des deux doit être juste (i.e. inceste ou Miguel n'aime pas Floriane). Nous pouvons donc commencer le calcul des séquents.
+
+\begin{displaymath}
+\prftree[r]
+{($\exists$r,$\exists$r)}
+{\prftree[r]{($\neg$r)}
+{\prftree[r]{($\land$r)}
+{\prftree[r]{(CG10)}
+{\prftree[r]{($\exists$I)}
+{\prftree[r]{basic}
+{\text{\textcircled{1}}}
+{\prftree[r]{(déduction)}
+{\Gamma , A(M,F) , B(b_9,A1) \vdash B(t_{10},A1)}
+{\Gamma , A(M,F) , B(b_9,A1) \vdash B(t_{10},t_{10'})}}}
+{\Gamma , A(M,F) , \exists b_9 \; B(b_9,A1) \vdash B(t_{10},t_{10'})}}
+{\Gamma , A(M,F) \vdash B(t_{10},t_{10'})}}
+{\prftree[r]{}
+{\text{\textcircled{2}}}
+{\Gamma , A(M,F) \vdash A(t_{10},t_{10'}) \lor A(t_{10'},t_{10})}}
+{\Gamma , A(M,F) \vdash B(t_{10},t_{10'}) \land (A(t_{10},t_{10'}) \lor A(t_{10'},t_{10}))}}
+{\Gamma \vdash B(t_{10},t_{10'}) \land (A(t_{10},t_{10'}) \lor A(t_{10'},t_{10})), \neg A(M,F)}}
+{\Gamma \vdash \exists i_{10} \exists i_{10'} \; B(i_{10},i_{10'}) \land (A(i_{10},i_{10'}) \lor A(i_{10'},i_{10})), \neg A(M,F)}
+\end{displaymath}
+
+On observe que $t_{10'} = A1$, et ainsi la branche \textcircled{1} devient un basic. Afin de simplifier les calculs, continuons maintenant en nous intéressant uniquement à la branche \textcircled{2}, en sachant maintenant que la personne $t_{10'}$ est Alexandre :
+
+\begin{displaymath}
+\prftree[r]{(rappel)}
+{\prftree[r]{($t_{10'}=A1$)}
+{\prftree[r]{(CG2)}
+{\prftree[r]{($\exists$I,$\exists$I,$\exists$I)}
+{\prftree[r]{($\land$I,$\land$I,$\land$I,$\land$I)}
+{\prftree[r]{($\lor$r)}
+{\prftree[r]{(déduction,weaken I)}
+{\prftree[r]{}
+{\text{\textcircled{3}}}
+{\Gamma , A(M,F) , A(A1,p_1) , A(p_1,A1) , D(p_1,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(M,F) , H(h_1) , A(h_1,p_1) , A(p_1,h_1) , D(p_1,x_1) , A(h_1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\Gamma , A(M,F) , H(h_1) , A(h_1,p_1) , A(p_1,h_1) , D(p_1,x_1) , A(h_1,x_1) \vdash A(t_{10},A1) \lor A(A1,t_{10})}}
+{\Gamma , A(M,F) , H(h_1) \land A(h_1,p_1) \land A(p_1,h_1) \land D(p_1,x_1) \land A(h_1,x_1) \vdash A(t_{10},A1) \lor A(A1,t_{10})}}
+{\Gamma , A(M,F) , \exists h_1 \exists p_1 \exists x_1 \; H(h_1) \land A(h_1,p_1) \land A(p_1,h_1) \land D(p_1,x_1) \land A(h_1,x_1) \vdash A(t_{10},A1) \lor A(A1,t_{10})}}
+{\Gamma , A(M,F) \vdash A(t_{10},A1) \lor A(A1,t_{10})}}
+{\Gamma , A(M,F) \vdash A(t_{10},t_{10'}) \lor A(t_{10'},t_{10})}}
+{\text{\textcircled{2}}}
+\end{displaymath}
+
+Je ne suis malheureusement pas très sûr de moi (je préfère le préciser, par soucis d’honnêteté). Mais en voyant la partie droite, il y a de bonnes chances que l'homme infidèle (formule 2) soit Alexandre. De plus, suivant mon graphe (qui montre la relation incestueuse et montre que Miguel est bien amoureux de Floriane), Miguel serait donc le frère caché d'Alexandre. Ainsi, nous pouvons continuer nos déductions. $p1$ est donc Alexandrine, et $x_1$ est $t_{10}$ qui est aussi Miguel :
+
+\begin{displaymath}
+\prftree[r]{(rappel)}
+{\prftree[r]{(déduction)}
+{\prftree[r]{basic}
+{}
+{\Gamma , A(M,F) , A(A1,A2) , A(A2,A1) , D(A2,M) , A(A1,M) \vdash A(M,A1) , A(A1,M)}}
+{\Gamma , A(M,F) , A(A1,p_1) , A(p_1,A1) , D(p_1,x_1) , A(A1,x_1) \vdash A(t_{10},A1) , A(A1,t_{10})}}
+{\text{\textcircled{3}}}
+\end{displaymath}
+\end{landscape}
+\newpage
+
+Ainsi, les deux branches \textcircled{1},\textcircled{2} nous donnent un basic, \emph{même si je suis bien moins sûr de ma démarche dans cette seconde branche}. Nous avons donc prouvé que soit il y a une relation incestueuse, soit Miguel n'aime pas Floriane. En l'occurrence, dans mon cas, j'ai même démontré que Miguel est le frère caché d'Alexandre, et qu'une des deux possibilités suivantes est forcément vraie : soit Alexandre est amoureux de Miguel, soit Miguel est amoureux d'Alexandre. Cela appuie mon graphe. Il correspond en effet non seulement aux différents énoncés de la saison 1, mais il répond également au questionnement de la saison 2.
+\vspace{0.6cm}
+
+En espérant que la mise en page soit suffisamment claire agréable à lire !
+
+\includepdf[pages={1}]{TP6_graphe.pdf}
+
+\end{document}
